@@ -38,6 +38,7 @@
   },
   "dependencies": {
     "browserify-shim": "^3.8.14",
+    "gulp.spritesmith": "^6.5.1",
     "jquery": "^3.2.1"
   }
 }

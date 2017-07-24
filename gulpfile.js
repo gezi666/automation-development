@@ -12,13 +12,14 @@ var bro = require('gulp-bro'),
     es2015 = require('babel-preset-es2015'),
     browserSync = require('browser-sync'),
     plumber = require('gulp-plumber'),
-    reload = browserSync.reload    
+    spritesmith = require('gulp.spritesmith'),
+    reload = browserSync.reload
 
 gulp.task('scripts', function() {
     return gulp.src(['./src/js/*/**.js'])
         .pipe(plumber())
         .pipe(bro({
-            external:['$'], 
+            external: ['$'],
             transform: [
                 babelify.configure({ presets: ['es2015'] })
             ]
@@ -69,9 +70,16 @@ gulp.task('images', function() {
         .pipe(gulp.dest('./dist/img'))
         .pipe(reload({ stream: true }));
 });
-
+// 精灵图
+gulp.task('sprite', function () {
+  var spriteData = gulp.src('./src/img/sprite/*.png').pipe(spritesmith({
+    imgName: 'img/sprite/sprite.png',
+    cssName: 'css/sprite/sprite.css'
+  }));
+  return spriteData.pipe(gulp.dest('src/'));
+});
 /*浏览器实时刷新*/
-gulp.task('server',['less', 'fileinclude', 'scripts'], function() {
+gulp.task('server', ['less', 'fileinclude', 'scripts'], function() {
     browserSync({
         server: {
             baseDir: 'dist'
@@ -88,4 +96,4 @@ gulp.task('clean', function() {
     return gulp.src(['dist']).pipe(clean());
 });
 
-gulp.task('default', ['copy','less', 'copy', 'fileinclude', 'images', 'scripts', 'server']);
+gulp.task('default', ['copy', 'less', 'copy', 'fileinclude', 'images', 'scripts', 'server']);
