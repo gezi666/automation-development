@@ -1,6 +1,5 @@
 var gulp = require('gulp');
 var bro = require('gulp-bro'),
-    concat = require('gulp-concat'),
     babelify = require('babelify'),
     uglify = require('gulp-uglify'),
     less = require('gulp-less'),
@@ -10,15 +9,14 @@ var bro = require('gulp-bro'),
     include = require('gulp-file-include'),
     imageminify = require('gulp-imagemin'),
     clean = require('gulp-clean'),
-    babel = require('gulp-babel'),
     es2015 = require('babel-preset-es2015'),
-    babelCore = require('babel-core'),
     browserSync = require('browser-sync'),
-    reload = browserSync.reload;
+    reload = browserSync.reload    
 
 gulp.task('scripts', function() {
     return gulp.src(['./src/js/*/**.js'])
         .pipe(bro({
+            external:['$'], 
             transform: [
                 babelify.configure({ presets: ['es2015'] })
             ]
@@ -30,8 +28,8 @@ gulp.task('scripts', function() {
 
 /*js copy*/
 gulp.task('copy', function() {
-    return gulp.src(['./src/js/lib/*/*.js'])
-        .pipe(gulp.dest('./dist/js/lib'))
+    return gulp.src(['./src/js/common/*/*/*.js'])
+        .pipe(gulp.dest('./dist/js/common'))
         .pipe(reload({ stream: true }));
 });
 
@@ -84,4 +82,4 @@ gulp.task('clean', function() {
     return gulp.src(['dist']).pipe(clean());
 });
 
-gulp.task('default', ['less', 'copy', 'fileinclude', 'images', 'scripts', 'server']);
+gulp.task('default', ['copy','less', 'copy', 'fileinclude', 'images', 'scripts', 'server']);
