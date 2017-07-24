@@ -11,10 +11,12 @@ var bro = require('gulp-bro'),
     clean = require('gulp-clean'),
     es2015 = require('babel-preset-es2015'),
     browserSync = require('browser-sync'),
+    plumber = require('gulp-plumber'),
     reload = browserSync.reload    
 
 gulp.task('scripts', function() {
     return gulp.src(['./src/js/*/**.js'])
+        .pipe(plumber())
         .pipe(bro({
             external:['$'], 
             transform: [
@@ -29,6 +31,7 @@ gulp.task('scripts', function() {
 /*js copy*/
 gulp.task('copy', function() {
     return gulp.src(['./src/js/common/*/*/*.js'])
+        .pipe(plumber())
         .pipe(gulp.dest('./dist/js/common'))
         .pipe(reload({ stream: true }));
 });
@@ -37,6 +40,7 @@ gulp.task('copy', function() {
 /*less编译*/
 gulp.task('less', function() {
     return gulp.src('./src/css/*/*.less')
+        .pipe(plumber())
         .pipe(less())
         .pipe(minifyCss())
         .pipe(gulp.dest('./dist/css'))
@@ -46,6 +50,7 @@ gulp.task('less', function() {
 /*html头尾部件复用*/
 gulp.task('fileinclude', function() {
     gulp.src('./src/html/*/**.html')
+        .pipe(plumber())
         .pipe(include({
             prefix: '@@',
             basepath: '@file'
@@ -59,6 +64,7 @@ gulp.task('fileinclude', function() {
 /*图片压缩*/
 gulp.task('images', function() {
     gulp.src('./src/img/*.*')
+        .pipe(plumber())
         .pipe(imageminify({ optimizationLevel: 5 }))
         .pipe(gulp.dest('./dist/img'))
         .pipe(reload({ stream: true }));

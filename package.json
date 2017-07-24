@@ -1,42 +1,43 @@
 {
-    "name": "gulp-d1",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
-    "scripts": {
-        "dev": "gulp"
-    },
-    "browser": {
-        "jquery": "./src/js/common/jquery.js"
-    },
-    "browserify-shim": {
-        "jquery": "$"
-    },
-    "browserify": {
-        "transform": [
-            "browserify-shim"
-        ]
-    },
-    "license": "ISC",
-    "devDependencies": {
-        "babel-preset-es2015": "^6.18.0",
-        "babelify": "^7.3.0",
-        "browser-sync": "^2.18.12",
-        "browserify": "^14.4.0",
-        "gulp": "^3.9.1",
-        "gulp-bro": "^1.0.2",
-        "gulp-clean": "^0.3.2",
-        "gulp-css-spriter": "^0.3.3",
-        "gulp-file-include": "^1.0.0",
-        "gulp-imagemin": "^3.1.1",
-        "gulp-less": "^3.3.0",
-        "gulp-minify-css": "^1.2.4",
-        "gulp-minify-html": "^1.0.6",
-        "gulp-uglify": "^2.0.0",
-        "gulp-watch": "^4.3.11"
-    },
-    "dependencies": {
-        "browserify-shim": "^3.8.14",
-        "jquery": "^3.2.1"
-    }
+  "name": "gulp-d1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "gulp"
+  },
+  "browser": {
+    "jquery": "./src/js/common/jquery.js"
+  },
+  "browserify-shim": {
+    "jquery": "$"
+  },
+  "browserify": {
+    "transform": [
+      "browserify-shim"
+    ]
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "babel-preset-es2015": "^6.18.0",
+    "babelify": "^7.3.0",
+    "browser-sync": "^2.18.12",
+    "browserify": "^14.4.0",
+    "gulp": "^3.9.1",
+    "gulp-bro": "^1.0.2",
+    "gulp-clean": "^0.3.2",
+    "gulp-css-spriter": "^0.3.3",
+    "gulp-file-include": "^1.0.0",
+    "gulp-imagemin": "^3.1.1",
+    "gulp-less": "^3.3.0",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-minify-html": "^1.0.6",
+    "gulp-plumber": "^1.1.0",
+    "gulp-uglify": "^2.0.0",
+    "gulp-watch": "^4.3.11"
+  },
+  "dependencies": {
+    "browserify-shim": "^3.8.14",
+    "jquery": "^3.2.1"
+  }
 }
