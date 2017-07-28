@@ -25,6 +25,7 @@
     "browserify": "^14.4.0",
     "gulp": "^3.9.1",
     "gulp-bro": "^1.0.2",
+    "gulp-cache": "^0.4.6",
     "gulp-clean": "^0.3.2",
     "gulp-concat": "^2.6.1",
     "gulp-css-spriter": "^0.3.3",
@@ -36,7 +37,8 @@
     "gulp-order": "^1.1.1",
     "gulp-plumber": "^1.1.0",
     "gulp-uglify": "^2.0.0",
-    "gulp-watch": "^4.3.11"
+    "gulp-watch": "^4.3.11",
+    "imagemin-pngquant": "^5.0.1"
   },
   "dependencies": {
     "browserify-shim": "^3.8.14",

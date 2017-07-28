@@ -8,6 +8,9 @@ var bro = require('gulp-bro'),
     watch = require('gulp-watch'),
     concat = require('gulp-concat'),
     order = require('gulp-order'),
+    cache = require('gulp-cache'),
+    pngquant = require('imagemin-pngquant'),
+
     include = require('gulp-file-include'),
     imageminify = require('gulp-imagemin'),
     clean = require('gulp-clean'),
@@ -95,13 +98,14 @@ gulp.task('fileinclude', function() {
 gulp.task('images', function() {
     gulp.src('./src/img/*.*')
         .pipe(plumber())
-        .pipe(imageminify({
+        .pipe(cache(imageminify({
             optimizationLevel: 5, //类型：Number  默认：3  取值范围：0-7（优化等级）
             progressive: true, //类型：Boolean 默认：false 无损压缩jpg图片
             interlaced: true, //类型：Boolean 默认：false 隔行扫描gif进行渲染
-            multipass: true //类型：Boolean 默认：false 多次优化svg直到完全优化
-        }))
-    .pipe(gulp.dest('./dist/img'))
+            multipass: true,//类型：Boolean 默认：false 多次优化svg直到完全优化
+            use: [pngquant()] //使用pngquant深度压缩png图片的imagemin插件
+        })))
+        .pipe(gulp.dest('./dist/img'))
         .pipe(reload({ stream: true }));
 });
 // 精灵图
