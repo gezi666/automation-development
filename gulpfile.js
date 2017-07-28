@@ -45,7 +45,7 @@ gulp.task('copy', function() {
  * 打包的顺序会根据你的输入数组的顺序来合并
  */
 gulp.task('concat', function() {
-    return gulp.src(['./src/js/common/jquery.js','./src/js/common/c.js']) //需要合并的文件
+    return gulp.src(['./src/js/common/jquery.js', './src/js/common/c.js']) //需要合并的文件
         .pipe(concat('all.js')) //合并后文件名称
         .pipe(uglify()) //压缩文件
         .pipe(gulp.dest('./dist/')); // 输出文件路径
@@ -56,7 +56,7 @@ gulp.task('concat', function() {
  * 打包的顺序会根据你的order配置前后顺序相关，越在上面的规则 会打在文件的头部
  */
 gulp.task('concat-order', function() {
-    return gulp.src(['./src/js/common/jquery.js','./src/js/common/c.js']) //需要合并的文件
+    return gulp.src(['./src/js/common/jquery.js', './src/js/common/c.js']) //需要合并的文件
         .pipe(order([
             "src/js/common/c.js",
             "src/**/*.js"
@@ -95,8 +95,13 @@ gulp.task('fileinclude', function() {
 gulp.task('images', function() {
     gulp.src('./src/img/*.*')
         .pipe(plumber())
-        .pipe(imageminify({ optimizationLevel: 5 }))
-        .pipe(gulp.dest('./dist/img'))
+        .pipe(imageminify({
+            optimizationLevel: 5, //类型：Number  默认：3  取值范围：0-7（优化等级）
+            progressive: true, //类型：Boolean 默认：false 无损压缩jpg图片
+            interlaced: true, //类型：Boolean 默认：false 隔行扫描gif进行渲染
+            multipass: true //类型：Boolean 默认：false 多次优化svg直到完全优化
+        }))
+    .pipe(gulp.dest('./dist/img'))
         .pipe(reload({ stream: true }));
 });
 // 精灵图
