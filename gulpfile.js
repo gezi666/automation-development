@@ -6,6 +6,8 @@ var bro = require('gulp-bro'),
     minifyCss = require('gulp-minify-css'),
     minifyHtml = require("gulp-minify-html"),
     watch = require('gulp-watch'),
+    concat = require('gulp-concat'),
+    order = require('gulp-order'),
     include = require('gulp-file-include'),
     imageminify = require('gulp-imagemin'),
     clean = require('gulp-clean'),
@@ -37,6 +39,33 @@ gulp.task('copy', function() {
         .pipe(reload({ stream: true }));
 });
 
+/*
+ * js concat
+ * 执行任务 需要手动配置合并的文件路径  可以用正则匹配 或者 包含文件路径的数组
+ * 打包的顺序会根据你的输入数组的顺序来合并
+ */
+gulp.task('concat', function() {
+    return gulp.src(['./src/js/common/jquery.js','./src/js/common/c.js']) //需要合并的文件
+        .pipe(concat('all.js')) //合并后文件名称
+        .pipe(uglify()) //压缩文件
+        .pipe(gulp.dest('./dist/')); // 输出文件路径
+});
+/*
+ * js concat-order
+ * 执行任务 需要手动配置合并的文件路径  可以用正则匹配 或者 包含文件路径的数组
+ * 打包的顺序会根据你的order配置前后顺序相关，越在上面的规则 会打在文件的头部
+ */
+gulp.task('concat-order', function() {
+    return gulp.src(['./src/js/common/jquery.js','./src/js/common/c.js']) //需要合并的文件
+        .pipe(order([
+            "src/js/common/c.js",
+            "src/**/*.js"
+        ]))
+        .pipe(concat('all.js')) //合并后文件名称
+        .pipe(uglify()) //压缩文件
+        .pipe(gulp.dest('./dist/')); // 输出文件路径
+});
+
 
 /*less编译*/
 gulp.task('less', function() {
@@ -50,7 +79,7 @@ gulp.task('less', function() {
 
 /*html头尾部件复用*/
 gulp.task('fileinclude', function() {
-    gulp.src('./src/html/*/**.html')
+    gulp.src(['./src/html/*/**.html', './src/html/**.html'])
         .pipe(plumber())
         .pipe(include({
             prefix: '@@',
@@ -71,12 +100,12 @@ gulp.task('images', function() {
         .pipe(reload({ stream: true }));
 });
 // 精灵图
-gulp.task('sprite', function () {
-  var spriteData = gulp.src('./src/img/sprite/*.png').pipe(spritesmith({
-    imgName: 'img/sprite/sprite.png',
-    cssName: 'css/sprite/sprite.css'
-  }));
-  return spriteData.pipe(gulp.dest('src/'));
+gulp.task('sprite', function() {
+    var spriteData = gulp.src('./src/img/sprite/*.png').pipe(spritesmith({
+        imgName: 'img/sprite/sprite.png',
+        cssName: 'css/sprite/sprite.css'
+    }));
+    return spriteData.pipe(gulp.dest('src/'));
 });
 /*浏览器实时刷新*/
 gulp.task('server', ['less', 'fileinclude', 'scripts'], function() {
