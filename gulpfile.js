@@ -18,11 +18,13 @@ var bro = require('gulp-bro'),
     browserSync = require('browser-sync'),
     plumber = require('gulp-plumber'),
     spritesmith = require('gulp.spritesmith'),
+    changed = require('gulp-changed'),
     reload = browserSync.reload
 
 gulp.task('scripts', function() {
     return gulp.src(['./src/js/*/**.js'])
         .pipe(plumber())
+        .pipe(changed('./dist/js'))
         .pipe(bro({
             external: ['$'],
             transform: [
@@ -38,6 +40,7 @@ gulp.task('scripts', function() {
 gulp.task('copy', function() {
     return gulp.src(['./src/js/common/*/*/*.js'])
         .pipe(plumber())
+        .pipe(changed('./dist/js/common'))
         .pipe(gulp.dest('./dist/js/common'))
         .pipe(reload({ stream: true }));
 });
@@ -74,6 +77,7 @@ gulp.task('concat-order', function() {
 gulp.task('less', function() {
     return gulp.src('./src/css/*/*.less')
         .pipe(plumber())
+        .pipe(changed('./dist/css'))
         .pipe(less())
         .pipe(minifyCss())
         .pipe(gulp.dest('./dist/css'))
@@ -84,6 +88,7 @@ gulp.task('less', function() {
 gulp.task('fileinclude', function() {
     gulp.src(['./src/html/*/**.html', './src/html/**.html'])
         .pipe(plumber())
+        .pipe(changed('./dist/html'))
         .pipe(include({
             prefix: '@@',
             basepath: '@file'
@@ -98,6 +103,7 @@ gulp.task('fileinclude', function() {
 gulp.task('images', function() {
     gulp.src('./src/img/*.*')
         .pipe(plumber())
+        .pipe(changed('./dist/img'))
         .pipe(cache(imageminify({
             optimizationLevel: 5, //类型：Number  默认：3  取值范围：0-7（优化等级）
             progressive: true, //类型：Boolean 默认：false 无损压缩jpg图片
