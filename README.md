@@ -20,8 +20,23 @@ $ npm run dev //用于开发环境
 $ npm run build //用于生产环境
 ```
 
+### 项目目录结构
 
-## 搭建开发环境
+```
+.
+├─ build/               # gulp 任务配置目录
+├─ dist/                # build 生成的生产环境下的项目
+├─ src/                 # 源码目录（开发都在这里进行）
+│   ├── components/     # 组件（COMPONENT）
+│   ├── html/           # 页面级html
+│   ├── css/            # css文件存放目录（less ,scss,css）
+│   ├── js/             # js文件存放目录
+│   ├── images/         # 图片文件
+├── .babelrc            # Babel 转码配置
+├── .gitignore          # （配置）需被 Git 忽略的文件（夹）
+├── gulpfile.js         #   gulpfile基础配置文件
+├── package.json        # （这个就不用多解释了吧）
+```
 
 
 ### 安装必要的开发工具包
