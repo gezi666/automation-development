@@ -1,143 +1,34 @@
-var gulp = require('gulp');
-var bro = require('gulp-bro'),
-    babelify = require('babelify'),
-    uglify = require('gulp-uglify'),
-    less = require('gulp-less'),
-    minifyCss = require('gulp-minify-css'),
-    minifyHtml = require("gulp-minify-html"),
-    watch = require('gulp-watch'),
-    concat = require('gulp-concat'),
-    order = require('gulp-order'),
-    cache = require('gulp-cache'),
-    pngquant = require('imagemin-pngquant'),
-
-    include = require('gulp-file-include'),
-    imageminify = require('gulp-imagemin'),
-    clean = require('gulp-clean'),
-    es2015 = require('babel-preset-es2015'),
-    browserSync = require('browser-sync'),
-    plumber = require('gulp-plumber'),
-    spritesmith = require('gulp.spritesmith'),
-    changed = require('gulp-changed'),
-    reload = browserSync.reload
-
-gulp.task('scripts', function() {
-    return gulp.src(['./src/js/*/**.js'])
-        .pipe(plumber())
-        .pipe(changed('./dist/js'))
-        .pipe(bro({
-            external: ['$'],
-            transform: [
-                babelify.configure({ presets: ['es2015'] })
-            ]
-        }))
-        .pipe(gulp.dest('./dist/js'))
-        .pipe(reload({ stream: true }))
-});
+const gulp = require('gulp');
+const browserSync = require('browser-sync').create();
+const reload = browserSync.reload;
+const getTask =require('./build/util.js')
 
 
-/*js copy*/
-gulp.task('copy', function() {
-    return gulp.src(['./src/js/common/*/*/*.js'])
-        .pipe(plumber())
-        .pipe(changed('./dist/js/common'))
-        .pipe(gulp.dest('./dist/js/common'))
-        .pipe(reload({ stream: true }));
-});
 
-/*
- * js concat
- * 执行任务 需要手动配置合并的文件路径  可以用正则匹配 或者 包含文件路径的数组
- * 打包的顺序会根据你的输入数组的顺序来合并
- */
-gulp.task('concat', function() {
-    return gulp.src(['./src/js/common/jquery.js', './src/js/common/c.js']) //需要合并的文件
-        .pipe(concat('all.js')) //合并后文件名称
-        .pipe(uglify()) //压缩文件
-        .pipe(gulp.dest('./dist/')); // 输出文件路径
-});
-/*
- * js concat-order
- * 执行任务 需要手动配置合并的文件路径  可以用正则匹配 或者 包含文件路径的数组
- * 打包的顺序会根据你的order配置前后顺序相关，越在上面的规则 会打在文件的头部
- */
-gulp.task('concat-order', function() {
-    return gulp.src(['./src/js/common/jquery.js', './src/js/common/c.js']) //需要合并的文件
-        .pipe(order([
-            "src/js/common/c.js",
-            "src/**/*.js"
-        ]))
-        .pipe(concat('all.js')) //合并后文件名称
-        .pipe(uglify()) //压缩文件
-        .pipe(gulp.dest('./dist/')); // 输出文件路径
-});
+gulp.task('scripts', getTask('scripts'));
+gulp.task('less', getTask('less'));
+gulp.task('html', getTask('html'));
+gulp.task('components', getTask('components'));
+gulp.task('img', getTask('img'));
+gulp.task('concatjs', getTask('concatjs'));
 
 
-/*less编译*/
-gulp.task('less', function() {
-    return gulp.src('./src/css/*/*.less')
-        .pipe(plumber())
-        .pipe(changed('./dist/css'))
-        .pipe(less())
-        .pipe(minifyCss())
-        .pipe(gulp.dest('./dist/css'))
-        .pipe(reload({ stream: true }));
-});
+gulp.task('default', ['scripts', 'less', 'html','img']);
 
-/*html头尾部件复用*/
-gulp.task('fileinclude', function() {
-    gulp.src(['./src/html/*/**.html', './src/html/**.html'])
-        .pipe(plumber())
-        .pipe(changed('./dist/html'))
-        .pipe(include({
-            prefix: '@@',
-            basepath: '@file'
-        }))
-        // .pipe(minifyHtml()) //压缩
-        .pipe(gulp.dest('dist/html'))
-        .pipe(reload({ stream: true }));
-});
-
-
-/*图片压缩*/
-gulp.task('images', function() {
-    gulp.src('./src/img/*.*')
-        .pipe(plumber())
-        .pipe(changed('./dist/img'))
-        .pipe(cache(imageminify({
-            optimizationLevel: 5, //类型：Number  默认：3  取值范围：0-7（优化等级）
-            progressive: true, //类型：Boolean 默认：false 无损压缩jpg图片
-            interlaced: true, //类型：Boolean 默认：false 隔行扫描gif进行渲染
-            multipass: true,//类型：Boolean 默认：false 多次优化svg直到完全优化
-            use: [pngquant()] //使用pngquant深度压缩png图片的imagemin插件
-        })))
-        .pipe(gulp.dest('./dist/img'))
-        .pipe(reload({ stream: true }));
-});
-// 精灵图
-gulp.task('sprite', function() {
-    var spriteData = gulp.src('./src/img/sprite/*.png').pipe(spritesmith({
-        imgName: 'img/sprite/sprite.png',
-        cssName: 'css/sprite/sprite.css'
-    }));
-    return spriteData.pipe(gulp.dest('src/'));
-});
-/*浏览器实时刷新*/
-gulp.task('server', ['less', 'fileinclude', 'scripts'], function() {
-    browserSync({
-        server: {
-            baseDir: 'dist'
-        }
-    });
-
-    gulp.watch('src/css/*/*.less', ['less']);
-    gulp.watch('src/html/*/*.html', ['fileinclude']);
-    gulp.watch('src/js/*/*.js', ['scripts']);
+// 静态服务器 + 监听 scss/html 文件
+gulp.task('dev', ['scripts', 'less', 'html','components','img'], function() {
+	browserSync.init({
+		server: "./dist"
+	});
+	gulp.watch('src/img/**/*', ['img']);
+	gulp.watch('src/img/**/*').on('change', reload);
+	gulp.watch('src/js/**/*.js', ['scripts']);
+	gulp.watch('src/js/**/*.js').on('change', reload);
+	gulp.watch('src/css/**/*.less', ['less']);
+	gulp.watch('src/css/**/*.less').on('change', reload);
+	gulp.watch("src/components/*.html",['components']);
+	gulp.watch("src/components/*.html").on('change', reload);
+	gulp.watch('src/html/**/*.html', ['html']);
+	gulp.watch('src/html/**/*.html').on('change', reload);
 
 });
-/*清楚文件夹*/
-gulp.task('clean', function() {
-    return gulp.src(['dist']).pipe(clean());
-});
-
-gulp.task('default', ['copy', 'less', 'copy', 'fileinclude', 'images', 'scripts', 'server']);
