@@ -40,7 +40,7 @@ $ npm run build //用于生产环境
 
 
 ### 安装必要的开发工具包
-
+```
    +  babel-core         # babel-core 的作用是把 js 代码分析成 ast 方便各个插件分析语法进行相应的处理。
    +  babel-preset-env   # babel-preset-env可以根据配置的目标运行环境自动启用需要的 babel 插件
    +  browser-sync       # BrowserSync能让浏览器实时、快速响应您的文件的更改
@@ -62,7 +62,7 @@ $ npm run build //用于生产环境
    +  gulp-sass          # 将scss  转化为css
    +  gulp-uglify        # js压缩
    +  uglify-js
-
+```
 
 ### 已配置的任务
    + scripts  js处理支持es6
