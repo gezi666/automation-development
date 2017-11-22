@@ -49,10 +49,16 @@ $ npm run build //用于生产环境
    +  uglify-js
 
 
+### 已配置的任务
+   + scripts  js处理支持es6
+   + less     less转化和压缩
+   + html     html的公共组件引入和压缩
+   + img      图片的压缩
+   + concatjs js合并处理
+   
+   > 如果需求不能满足您也可以在npm的网站上找到相应插件的gulp配置写法
 
 
 
-
-你可以在npm的网站上找到相应插件的gulp配置写法
 
 
