@@ -71,7 +71,13 @@ $ npm run build //用于生产环境
    + img      图片的压缩
    + concatjs js合并处理
    
-   > 如果需求不能满足您也可以在npm的网站上找到相应插件的gulp配置写法（https://www.npmjs.com/）
+   > 如果需求不能满足您也可以在npm的网站上找到相应插件的gulp配置写法
+   
+
+   ### <a name="reference">&sect; 参考</a>
+* [npmjs](https://www.npmjs.com/)
+* [gulpjs](http://www.gulpjs.com.cn/)
+* [babel](https://babeljs.cn/)
 
 
 
