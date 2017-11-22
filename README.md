@@ -26,7 +26,7 @@ $ npm run build //用于生产环境
 
 ### 安装必要的开发工具包
    +  "babel-core": "^6.26.0",
-      ++  babel-core 的作用是把 js 代码分析成 ast ，方便各个插件分析语法进行相应的处理。
+   ++  babel-core 的作用是把 js 代码分析成 ast ，方便各个插件分析语法进行相应的处理。
    +  "babel-preset-env": "^1.6.1",
    +  "browser-sync": "^2.18.13",
    +  "del": "^3.0.0",
