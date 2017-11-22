@@ -41,26 +41,26 @@ $ npm run build //用于生产环境
 
 ### 安装必要的开发工具包
 
-   +  babel-core &emsp;&emsp;&emsp; babel-core 的作用是把 js 代码分析成 ast ，方便各个插件分析语法进行相应的处理。
-   +  babel-preset-env &emsp;&emsp;&emsp; babel-preset-env可以根据配置的目标运行环境（environment）自动启用需要的 babel 插件
-   +  browser-sync &emsp;&emsp;&emsp; BrowserSync能让浏览器实时、快速响应您的文件(html、js、css、sass、less等等)的更改
-   +  del &emsp;&emsp;&emsp; 文件的删除操作
-   +  gulp &emsp;&emsp;&emsp; 用自动化构建工具增强你的工作流程！
-   +  gulp-babel &emsp;&emsp;&emsp; gulp-babel用于es6的语法转化
-   +  gulp-changed &emsp;&emsp;&emsp; 使用 gulp-changed 可以只让更改过的文件传递过管道。
-   +  gulp-concat &emsp;&emsp;&emsp; 使用 gulp-concat  用于文件合并
+   +  babel-core &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; babel-core 的作用是把 js 代码分析成 ast ，方便各个插件分析语法进行相应的处理。
+   +  babel-preset-env &emsp;&emsp;&emsp; babel-preset-env可以根据配置的目标运行环境自动启用需要的 babel 插件
+   +  browser-sync &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; BrowserSync能让浏览器实时、快速响应您的文件(html、js、css、sass、less)的更改
+   +  del &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 文件的删除操作
+   +  gulp &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 用自动化构建工具增强你的工作流程！
+   +  gulp-babel &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; gulp-babel用于es6的语法转化
+   +  gulp-changed &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 使用 gulp-changed 可以只让更改过的文件传递过管道。
+   +  gulp-concat &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 使用 gulp-concat  用于文件合并
    +  gulp-html-extend &emsp;&emsp;&emsp; 可以轻松扩展，包含和替换您的html文件
-   +  gulp-if &emsp;&emsp;&emsp; 可以利用条件判断
-   +  gulp-imagemin &emsp;&emsp;&emsp; 用于图片压缩
-   +  gulp-less &emsp;&emsp;&emsp; 用将less转化成css
-   +  gulp-load-plugins &emsp;&emsp;&emsp; 使用gulp-load-plugins模块，可以加载package.json文件中所有的gulp模块
-   +  gulp-minify-css &emsp;&emsp;&emsp; 压缩css
-   +  gulp-minify-html &emsp;&emsp;&emsp;  压缩html
-   +  gulp-order &emsp;&emsp;&emsp; 文件合并的排序
-   +  gulp-plumber &emsp;&emsp;&emsp; gulp的错误捕获
-   +  gulp-rev &emsp;&emsp;&emsp; 根据静态资源内容，生成md5签名，打包出来的文件名会加上md5签名
-   +  gulp-sass &emsp;&emsp;&emsp; 将scss  转化为css
-   +  gulp-uglify &emsp;&emsp;&emsp; js压缩
+   +  gulp-if &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 可以利用条件判断
+   +  gulp-imagemin &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 用于图片压缩
+   +  gulp-less &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 用将less转化成css
+   +  gulp-load-plugins &emsp;&emsp; 使用gulp-load-plugins模块，可以加载package.json文件中所有的gulp模块
+   +  gulp-minify-css &emsp;&emsp;&emsp;&emsp;&emsp; 压缩css
+   +  gulp-minify-html &emsp;&emsp;&emsp;&emsp;  压缩html
+   +  gulp-order &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 文件合并的排序
+   +  gulp-plumber &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; gulp的错误捕获
+   +  gulp-rev &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 根据静态资源内容，生成md5签名，打包出来的文件名会加上md5签名
+   +  gulp-sass &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 将scss  转化为css
+   +  gulp-uglify &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; js压缩
    +  uglify-js
 
 
