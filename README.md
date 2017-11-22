@@ -25,22 +25,28 @@ $ npm run build //用于生产环境
 
 
 ### 安装必要的开发工具包
--   babel-preset-es2015
--   babelify
--   browser-sync     省时的浏览器同步测试工具
--   browserify
--   gulp             用自动化构建工具增强你的工作流程！
--   gulp-cache
--   gulp-changed     通过使用 gulp-changed 可以只让更改过的文件传递过管道。这可以大大加快连续多次的运行
--   gulp-clean
--   gulp-concat      使用gulp-concat合并文件,减少网络请求
--   imagemin-pngquant使用imagemin-pngquant压缩图片文件(包括PNG、JPEG、GIF和SVG图片)
--   gulp-less        使用gulp-less插件将less文件编译成css
--   gulp-minify-css  使用gulp-minify-css压缩css文件,减小文件大小
--   gulp-minify-html 使用gulp-minify-html 用来压缩html文件
--   gulp-order       使用gulp-ordert合并文件时,进行排序
--   gulp-plumber     使用gulp-plumber来捕获处理任务中的错误
--   gulp-uglify      使用gulp-uglify压缩javascript文件,减小文件大小
+   +  "babel-core": "^6.26.0",
+   +  "babel-preset-env": "^1.6.1",
+   +  "browser-sync": "^2.18.13",
+   +  "del": "^3.0.0",
+   +  "gulp": "^3.9.1",
+   +  "gulp-babel": "^7.0.0",
+   +  "gulp-changed": "^3.1.1",
+   +  "gulp-concat": "^2.6.1",
+   +  "gulp-html-extend": "^1.1.6",
+   +  "gulp-if": "^2.0.2",
+   +  "gulp-imagemin": "^3.4.0",
+   +  "gulp-less": "^3.3.2",
+   +  "gulp-load-plugins": "^1.5.0",
+   +  "gulp-minify-css": "^1.2.4",
+   +  "gulp-minify-html": "^1.0.6",
+   +  "gulp-order": "^1.1.1",
+   +  "gulp-plumber": "^1.1.0",
+   +  "gulp-rev": "^8.1.0",
+   +  "gulp-sass": "^3.1.0",
+   +  "gulp-sourcemap": "^1.0.1",
+   +  "gulp-uglify": "^3.0.0",
+   +  "uglify-js": "^3.1.8"
 -   
 
 ```javascript
